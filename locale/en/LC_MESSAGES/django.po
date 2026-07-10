@@ -1,0 +1,321 @@
+# English translation for the animal-shelter-webapp UI.
+# Source (msgid) is Italian; set LANGUAGE_CODE="en" to use this catalog.
+msgid ""
+msgstr ""
+"Project-Id-Version: animal-shelter-webapp\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Adatto a bambini"
+msgstr "Good with children"
+
+msgid "Adatto a famiglie con bambini"
+msgstr "Suitable for families with children"
+
+msgid "Adatto a gatti"
+msgstr "Good with cats"
+
+msgid "Adatto ad altri cani"
+msgstr "Good with other dogs"
+
+msgid "Adottati felicemente"
+msgstr "Happily adopted"
+
+msgid "Adozione Responsabile"
+msgstr "Responsible Adoption"
+
+msgid "Altri cani"
+msgstr "Other dogs"
+
+msgid "Apri menu"
+msgstr "Open menu"
+
+msgid "Arrivo al canile"
+msgstr "Arrival at the shelter"
+
+msgid "Assistenza Veterinaria"
+msgstr "Veterinary Care"
+
+msgid "Attendi 1 ora e riprova"
+msgstr "Wait 1 hour and try again"
+
+msgid "Bambini"
+msgstr "Children"
+
+msgid "Cambia tema"
+msgstr "Toggle theme"
+
+msgid "Cani"
+msgstr "Dogs"
+
+msgid "Cani in Evidenza"
+msgstr "Featured Dogs"
+
+msgid "Cani nella nostra struttura"
+msgstr "Dogs in our facility"
+
+msgid "Caratteristiche"
+msgstr "Details"
+
+msgid "Cerca:"
+msgstr "Search:"
+
+msgid "Chi Siamo"
+msgstr "About Us"
+
+msgid "Collaboriamo con veterinari qualificati per garantire la salute e il benessere di ogni animale."
+msgstr "We work with qualified vets to ensure the health and wellbeing of every animal."
+
+msgid "Compatibilità"
+msgstr "Compatibility"
+
+msgid "Compatibilità:"
+msgstr "Compatibility:"
+
+msgid "Compila il form per richiedere informazioni o prenotare una visita"
+msgstr "Fill in the form to request information or book a visit"
+
+msgid "Contattaci"
+msgstr "Contact us"
+
+msgid "Contattaci Ora"
+msgstr "Contact Us Now"
+
+msgid "Contattaci direttamente, saremo felici di rispondere a tutte le tue domande"
+msgstr "Contact us directly, we'll be happy to answer all your questions"
+
+msgid "Contattaci per prenotare una visita al canile e incontrare i nostri cani. Ti aiuteremo a trovare il compagno perfetto per te e la tua famiglia."
+msgstr "Contact us to book a visit to the shelter and meet our dogs. We'll help you find the perfect companion for you and your family."
+
+msgid "Contattaci telefonicamente:"
+msgstr "Call us:"
+
+msgid "Contatti"
+msgstr "Contact"
+
+msgid "Convivenza con altri cani"
+msgstr "Gets along with other dogs"
+
+msgid "Convivenza con gatti"
+msgstr "Gets along with cats"
+
+msgid "Cosa puoi fare:"
+msgstr "What you can do:"
+
+msgid "Cura e Amore"
+msgstr "Care and Love"
+
+msgid "Disponibile"
+msgstr "Available"
+
+msgid "Disponibili per l'adozione"
+msgstr "Available for adoption"
+
+msgid "Domande Frequenti"
+msgstr "Frequently Asked Questions"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Esigenze Speciali"
+msgstr "Special Needs"
+
+msgid "Età"
+msgstr "Age"
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid "Filtra"
+msgstr "Filter"
+
+msgid "Gatti"
+msgstr "Cats"
+
+msgid "Grazie per averci contattato. Ti risponderemo al più presto all'indirizzo email che ci hai fornito."
+msgstr "Thank you for contacting us. We'll reply as soon as possible to the email address you provided."
+
+msgid "Hai raggiunto il limite giornaliero."
+msgstr "You have reached the daily limit."
+
+msgid "Home"
+msgstr "Home"
+
+msgid "I Nostri Cani"
+msgstr "Our Dogs"
+
+msgid "Il nostro canile si prende cura di cani abbandonati e maltrattati, offrendo loro cure veterinarie, amore e la possibilità di trovare una nuova famiglia."
+msgstr "Our shelter cares for abandoned and mistreated dogs, offering them veterinary care, love and the chance to find a new family."
+
+msgid "Incrocio"
+msgstr "Crossbreed"
+
+msgid "Indirizzo"
+msgstr "Address"
+
+msgid "Invia Messaggio"
+msgstr "Send Message"
+
+msgid "Invia una email:"
+msgstr "Send an email:"
+
+msgid "Le domande frequenti verranno aggiunte presto."
+msgstr "Frequently asked questions will be added soon."
+
+msgid "Le risposte alle domande più comuni sull'adozione"
+msgstr "Answers to the most common questions about adoption"
+
+msgid "Limite Richieste Raggiunto"
+msgstr "Request Limit Reached"
+
+msgid "Link Utili"
+msgstr "Useful Links"
+
+msgid "Messaggio Inviato!"
+msgstr "Message Sent!"
+
+msgid "Meticcio"
+msgstr "Mixed breed"
+
+msgid "Microchip"
+msgstr "Microchip"
+
+msgid "Minimo 20 caratteri, massimo 2000. Non includere link esterni."
+msgstr "Minimum 20 characters, maximum 2000. Do not include external links."
+
+msgid "Mostra tutte le FAQ"
+msgstr "Show all FAQ"
+
+msgid "Mostra tutti i cani"
+msgstr "Show all dogs"
+
+msgid "Navigazione slide"
+msgstr "Slide navigation"
+
+msgid "Nessun cane trovato"
+msgstr "No dogs found"
+
+msgid "Nessuna FAQ disponibile"
+msgstr "No FAQ available"
+
+msgid "Nome o razza..."
+msgstr "Name or breed..."
+
+msgid "Non ci sono domande per questa categoria al momento."
+msgstr "There are no questions for this category yet."
+
+msgid "Non hai trovato la risposta?"
+msgstr "Didn't find the answer?"
+
+msgid "Ogni cane merita una famiglia. Trova il tuo nuovo migliore amico."
+msgstr "Every dog deserves a family. Find your new best friend."
+
+msgid "Ogni cane riceve cure veterinarie, alimentazione adeguata e tanto affetto dal nostro staff."
+msgstr "Every dog receives veterinary care, proper nutrition and plenty of affection from our staff."
+
+msgid "Orari di Apertura"
+msgstr "Opening Hours"
+
+msgid "Percorso di navigazione"
+msgstr "Breadcrumb"
+
+msgid "Peso"
+msgstr "Weight"
+
+msgid "Potrebbero interessarti anche"
+msgstr "You might also like"
+
+msgid "Precedente"
+msgstr "Previous"
+
+msgid "Prima"
+msgstr "First"
+
+msgid "Pronto ad Adottare?"
+msgstr "Ready to Adopt?"
+
+msgid "Protezione Anti-Spam:"
+msgstr "Anti-Spam Protection:"
+
+msgid "Prova a modificare i filtri di ricerca"
+msgstr "Try adjusting the search filters"
+
+msgid "Questo form è protetto da Google reCAPTCHA e rate limit. I tuoi dati sono protetti e verranno utilizzati solo per rispondere alla tua richiesta."
+msgstr "This form is protected by Google reCAPTCHA and rate limiting. Your data is protected and will only be used to reply to your request."
+
+msgid "Reset"
+msgstr "Reset"
+
+msgid "Richiedi informazioni"
+msgstr "Request information"
+
+msgid "Scopri alcuni dei nostri amici a quattro zampe in cerca di una famiglia"
+msgstr "Meet some of our four-legged friends looking for a family"
+
+msgid "Sesso"
+msgstr "Sex"
+
+msgid "Sesso:"
+msgstr "Sex:"
+
+msgid "Slide 1"
+msgstr "Slide 1"
+
+msgid "Slide 2"
+msgstr "Slide 2"
+
+msgid "Slide 3"
+msgstr "Slide 3"
+
+msgid "Stato:"
+msgstr "Status:"
+
+msgid "Successiva"
+msgstr "Next"
+
+msgid "Taglia"
+msgstr "Size"
+
+msgid "Taglia:"
+msgstr "Size:"
+
+msgid "Telefono"
+msgstr "Phone"
+
+msgid "Ti accompagniamo in tutto il processo di adozione per trovare il cane perfetto per te."
+msgstr "We guide you through the whole adoption process to find the perfect dog for you."
+
+msgid "Torna alla Home"
+msgstr "Back to Home"
+
+msgid "Torna in cima"
+msgstr "Back to top"
+
+msgid "Trova il tuo nuovo amico a quattro zampe"
+msgstr "Find your new four-legged friend"
+
+msgid "Trova le risposte alle domande più comuni sull'adozione"
+msgstr "Find answers to the most common questions about adoption"
+
+msgid "Tutte"
+msgstr "All"
+
+msgid "Tutti"
+msgstr "All"
+
+msgid "Ultima"
+msgstr "Last"
+
+msgid "Vedi Tutte le FAQ"
+msgstr "See All FAQ"
+
+msgid "Vedi Tutti i Cani"
+msgstr "See All Dogs"
+
+msgid "Vedi i Cani"
+msgstr "See the Dogs"
+
+msgid "Visite su appuntamento"
+msgstr "Visits by appointment"

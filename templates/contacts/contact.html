@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load i18n widget_tweaks %}
+
+{% block title %}{% blocktrans %}Contatti - {{ SHELTER_NAME }}{% endblocktrans %}{% endblock %}
+
+{% block extra_js %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock %}
+
+{% block content %}
+<div class="container container--default" style="padding-top: var(--space-4); padding-bottom: var(--space-16);">
+
+  <!-- Header -->
+  <div class="page-header reveal">
+    <h1 class="page-header__title">{% trans "Contattaci" %}</h1>
+    <p class="page-header__subtitle">
+      {% trans "Compila il form per richiedere informazioni o prenotare una visita" %}
+    </p>
+  </div>
+
+  <!-- Rate limit info -->
+  {% if messages_sent_today > 0 %}
+  <div class="alert alert-info mb-lg reveal">
+    {% blocktrans with sent=messages_sent_today %}Hai inviato <strong>{{ sent }}</strong> messaggi oggi.{% endblocktrans %}
+    {% if messages_remaining > 0 %}
+      {% blocktrans with remaining=messages_remaining %}Te ne rimangono ancora <strong>{{ remaining }}</strong>.{% endblocktrans %}
+    {% else %}
+      {% trans "Hai raggiunto il limite giornaliero." %}
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <!-- Shelter info -->
+  <div class="info-box reveal">
+    <div class="info-box__grid">
+      <div class="info-box__item">
+        <h3>{% trans "Indirizzo" %}</h3>
+        <p>
+          {{ ADDRESS_STREET_AND_NUMBER }}<br>
+          {{ ADDRESS_CITY_AND_POSTAL_CODE }}
+        </p>
+      </div>
+      <div class="info-box__item">
+        <h3>{% trans "Telefono" %}</h3>
+        <p>
+          {{ CONTACT_PHONE }}<br>
+          {{ VISITING_HOURS_WEEKDAYS }}<br>
+          {{ VISITING_HOURS_WEEKEND_SAT }}
+        </p>
+      </div>
+      <div class="info-box__item">
+        <h3>{% trans "Email" %}</h3>
+        <p>
+          {{ PUBLIC_EMAIL }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Django messages -->
+  {% if messages %}
+  <div class="mb-lg">
+    {% for message in messages %}
+    <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-error{% else %}alert-info{% endif %}">
+      {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- Form -->
+  <div class="card reveal">
+
+    <div class="alert alert-warning mb-lg">
+      <strong>{% trans "Protezione Anti-Spam:" %}</strong> {% trans "Questo form è protetto da Google reCAPTCHA e rate limit. I tuoi dati sono protetti e verranno utilizzati solo per rispondere alla tua richiesta." %}
+    </div>
+
+    <form method="post" style="display: flex; flex-direction: column; gap: var(--space-5);">
+      {% csrf_token %}
+
+      <!-- Name -->
+      <div class="form-group">
+        <label for="id_name" class="form-label">{{ form.name.label }}</label>
+        {{ form.name }}
+        {% if form.name.errors %}
+        <div class="form-error">{{ form.name.errors }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Email + phone -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="id_email" class="form-label">{{ form.email.label }}</label>
+          {{ form.email }}
+          {% if form.email.errors %}
+          <div class="form-error">{{ form.email.errors }}</div>
+          {% endif %}
+        </div>
+        <div class="form-group">
+          <label for="id_phone" class="form-label">{{ form.phone.label }}</label>
+          {{ form.phone }}
+          {% if form.phone.errors %}
+          <div class="form-error">{{ form.phone.errors }}</div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Subject + dog -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="id_subject" class="form-label">{{ form.subject.label }}</label>
+          {{ form.subject }}
+          {% if form.subject.errors %}
+          <div class="form-error">{{ form.subject.errors }}</div>
+          {% endif %}
+        </div>
+        <div class="form-group">
+          <label for="id_dog" class="form-label">{{ form.dog.label }}</label>
+          {{ form.dog }}
+          {% if form.dog.errors %}
+          <div class="form-error">{{ form.dog.errors }}</div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Message -->
+      <div class="form-group">
+        <label for="id_message" class="form-label">{{ form.message.label }}</label>
+        {{ form.message }}
+        <span class="form-hint">{% trans "Minimo 20 caratteri, massimo 2000. Non includere link esterni." %}</span>
+        {% if form.message.errors %}
+        <div class="form-error">{{ form.message.errors }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Honeypot -->
+      <div class="hp-field">{{ form.website }}</div>
+
+      <!-- CAPTCHA -->
+      <div class="captcha-container">
+        <div>
+          <label class="form-label" style="display:block; margin-bottom: var(--space-3);">
+            {{ form.captcha.label }}
+          </label>
+          {{ form.captcha }}
+          {% if form.captcha.errors %}
+          <div class="form-error mt-sm">{{ form.captcha.errors }}</div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn-primary btn-lg btn-block">
+        {% trans "Invia Messaggio" %}
+      </button>
+
+      <!-- Privacy -->
+      <p class="text-muted" style="font-size: var(--text-sm); text-align: center; margin-top: calc(-1 * var(--space-2));">
+        {% blocktrans %}Inviando questo modulo accetti la nostra <a href="#" style="color: var(--color-primary);">Privacy Policy</a>. I tuoi dati saranno utilizzati solo per rispondere alla tua richiesta.{% endblocktrans %}
+      </p>
+
+    </form>
+  </div>
+
+</div>
+{% endblock %}

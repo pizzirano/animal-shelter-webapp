@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{{ dog.name }} - {{ SHELTER_NAME }}{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: var(--space-6); padding-bottom: var(--space-16);">
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="{% trans 'Percorso di navigazione' %}">
+    <a href="{% url 'homepage:home' %}">{% trans "Home" %}</a>
+    <span class="breadcrumb__sep" aria-hidden="true">/</span>
+    <a href="{% url 'dogs:list' %}">{% trans "Cani" %}</a>
+    <span class="breadcrumb__sep" aria-hidden="true">/</span>
+    <span aria-current="page">{{ dog.name }}</span>
+  </nav>
+
+  <!-- Main grid -->
+  <div class="dog-detail">
+
+    <!-- Left column — Images -->
+    <div class="reveal">
+      <div class="dog-detail__main-image">
+        {% if dog.main_image %}
+        <img src="{{ dog.main_image.url }}" alt="{{ dog.name }}" id="mainDogImage">
+        {% else %}
+        <div class="dog-detail__main-placeholder">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <circle cx="4.5" cy="7.5" r="2.5"/>
+            <circle cx="9"   cy="4.5" r="2"/>
+            <circle cx="15"  cy="4.5" r="2"/>
+            <circle cx="19.5" cy="7.5" r="2.5"/>
+            <path d="M12 9c-3.5 0-7 2.8-7 7a2 2 0 002 2h10a2 2 0 002-2c0-4.2-3.5-7-7-7z"/>
+          </svg>
+        </div>
+        {% endif %}
+      </div>
+
+      {% if dog.images.all %}
+      <div class="dog-gallery">
+        {% for image in dog.images.all %}
+        <div class="dog-gallery__thumb"
+             data-src="{{ image.image.url }}"
+             data-alt="{{ image.caption|default:dog.name }}"
+             title="{{ image.caption }}">
+          <img src="{{ image.image.url }}" alt="{{ image.caption|default:dog.name }}">
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Right column — Info -->
+    <div class="reveal">
+
+      <!-- Heading -->
+      <div class="dog-detail__badges mb-md">
+        <span class="chip
+          {% if dog.status == 'available' %}chip-green chip--pulse
+          {% elif dog.status == 'adopted'  %}chip-neutral
+          {% elif dog.status == 'reserved' %}chip-warning
+          {% else %}chip-error{% endif %}">
+          {% if dog.status == 'available' %}&#9679; {% endif %}{{ dog.get_status_display }}
+        </span>
+      </div>
+      <h1 class="dog-detail__name">{{ dog.name }}</h1>
+      <p class="dog-detail__breed">
+        {% if dog.breed %}{{ dog.breed.name }}{% else %}{% trans "Meticcio" %}{% endif %}
+        {% if dog.is_mixed_breed %} &mdash; {% trans "Incrocio" %}{% endif %}
+      </p>
+
+      <!-- Specs -->
+      <div class="dog-specs">
+        <h2 class="dog-specs__title">{% trans "Caratteristiche" %}</h2>
+        <div class="dog-specs__grid">
+          <div class="dog-specs__item">
+            <strong>{% trans "Sesso" %}</strong>
+            {{ dog.get_gender_display }}
+          </div>
+          <div class="dog-specs__item">
+            <strong>{% trans "Taglia" %}</strong>
+            {{ dog.get_size_display }}
+          </div>
+          <div class="dog-specs__item">
+            <strong>{% trans "Età" %}</strong>
+            {{ dog.age_display }}
+          </div>
+          {% if dog.weight %}
+          <div class="dog-specs__item">
+            <strong>{% trans "Peso" %}</strong>
+            {{ dog.weight }} kg
+          </div>
+          {% endif %}
+          <div class="dog-specs__item">
+            <strong>{% trans "Arrivo al canile" %}</strong>
+            {{ dog.arrival_date|date:"d/m/Y" }}
+          </div>
+          {% if dog.microchip_number %}
+          <div class="dog-specs__item">
+            <strong>{% trans "Microchip" %}</strong>
+            <span class="monospace">{{ dog.microchip_number }}</span>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Compatibility -->
+      <div class="dog-compat">
+        <h2 class="dog-compat__title">{% trans "Compatibilità" %}</h2>
+        <div class="dog-compat__list">
+
+          <div class="dog-compat__item">
+            {% if dog.good_with_children %}
+            <svg class="dog-compat__icon dog-compat__icon--yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            {% else %}
+            <svg class="dog-compat__icon dog-compat__icon--no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            {% endif %}
+            <span>{% trans "Adatto a famiglie con bambini" %}</span>
+          </div>
+
+          <div class="dog-compat__item">
+            {% if dog.good_with_dogs %}
+            <svg class="dog-compat__icon dog-compat__icon--yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            {% else %}
+            <svg class="dog-compat__icon dog-compat__icon--no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            {% endif %}
+            <span>{% trans "Convivenza con altri cani" %}</span>
+          </div>
+
+          <div class="dog-compat__item">
+            {% if dog.good_with_cats %}
+            <svg class="dog-compat__icon dog-compat__icon--yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            {% else %}
+            <svg class="dog-compat__icon dog-compat__icon--no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            {% endif %}
+            <span>{% trans "Convivenza con gatti" %}</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Adoption CTA -->
+      <div class="dog-detail__actions">
+        {% if dog.status == 'available' %}
+        <a href="{% url 'contacts:contact' %}?dog={{ dog.id }}" class="btn-primary btn-lg btn-block">
+          {% blocktrans with name=dog.name %}Voglio adottare {{ name }}{% endblocktrans %}
+        </a>
+        {% endif %}
+        <a href="{% url 'contacts:contact' %}" class="btn-ghost btn-lg btn-block">
+          {% trans "Richiedi informazioni" %}
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Full description -->
+  <div class="dog-description reveal">
+    <h2 class="dog-description__title">{% blocktrans with name=dog.name %}Conosci {{ name }}{% endblocktrans %}</h2>
+    <div class="dog-description__body">
+      {{ dog.description|linebreaks }}
+    </div>
+  </div>
+
+  <!-- Special needs -->
+  {% if dog.special_needs %}
+  <div class="dog-special-needs reveal">
+    <h2 class="dog-special-needs__title">{% trans "Esigenze Speciali" %}</h2>
+    <div class="dog-special-needs__body">
+      {{ dog.special_needs|linebreaks }}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Similar dogs -->
+  {% if similar_dogs %}
+  <div class="reveal">
+    <h2 class="mb-lg">{% trans "Potrebbero interessarti anche" %}</h2>
+    <div class="dogs-grid reveal-group">
+      {% for similar in similar_dogs %}
+      <a href="{% url 'dogs:detail' similar.slug %}" class="dog-card-link reveal">
+        <div class="dog-card">
+          <div class="dog-card__image-wrap">
+            {% if similar.main_image %}
+            <img src="{{ similar.main_image.url }}" alt="{{ similar.name }}" class="dog-card__image">
+            {% else %}
+            <div class="dog-card__placeholder">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <circle cx="4.5" cy="7.5" r="2.5"/>
+                <circle cx="9"   cy="4.5" r="2"/>
+                <circle cx="15"  cy="4.5" r="2"/>
+                <circle cx="19.5" cy="7.5" r="2.5"/>
+                <path d="M12 9c-3.5 0-7 2.8-7 7a2 2 0 002 2h10a2 2 0 002-2c0-4.2-3.5-7-7-7z"/>
+              </svg>
+            </div>
+            {% endif %}
+          </div>
+          <div class="dog-card__body">
+            <h3 class="dog-card__name">{{ similar.name }}</h3>
+            <p class="dog-card__info">{{ similar.get_size_display }} &bull; {{ similar.age_display }}</p>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

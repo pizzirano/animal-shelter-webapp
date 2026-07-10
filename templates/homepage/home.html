@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% blocktrans %}{{ SHELTER_NAME }} - Adotta un Amico{% endblocktrans %}{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="hero" id="heroSection">
+
+  <!-- Background slides -->
+  <div class="hero__slides" aria-hidden="true">
+    <div class="hero__slide hero__slide--1 is-active" style="background-image: url('{% static 'images/bg1.jpg' %}')"></div>
+    <div class="hero__slide hero__slide--2"           style="background-image: url('{% static 'images/bg2.jpg' %}')"></div>
+    <div class="hero__slide hero__slide--3"           style="background-image: url('{% static 'images/bg7.jpg' %}')"></div>
+  </div>
+
+  <!-- Readability overlay -->
+  <div class="hero__overlay" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="hero__content">
+      <h1 class="hero__title">{% blocktrans %}Benvenuto al<br><em>nostro Canile</em>{% endblocktrans %}</h1>
+      <p class="hero__subtitle">
+        {% trans "Ogni cane merita una famiglia. Trova il tuo nuovo migliore amico." %}
+      </p>
+      <div class="hero__cta">
+        <a href="{% url 'dogs:list' %}"        class="btn-primary btn-lg">{% trans "Vedi i Cani" %}</a>
+        <a href="{% url 'contacts:contact' %}" class="btn-ghost-inverse btn-lg">{% trans "Contattaci" %}</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide indicators -->
+  <div class="hero__dots" role="tablist" aria-label="{% trans 'Navigazione slide' %}">
+    <button class="hero__dot is-active" role="tab" aria-label="{% trans 'Slide 1' %}" aria-selected="true"></button>
+    <button class="hero__dot"           role="tab" aria-label="{% trans 'Slide 2' %}" aria-selected="false"></button>
+    <button class="hero__dot"           role="tab" aria-label="{% trans 'Slide 3' %}" aria-selected="false"></button>
+  </div>
+
+</section>
+
+<!-- Stats -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid reveal-group">
+      <div class="reveal">
+        <div class="stat-number stat-number--primary">{{ stats.total_dogs }}</div>
+        <div class="stat-label">{% trans "Cani nella nostra struttura" %}</div>
+      </div>
+      <div class="reveal">
+        <div class="stat-number stat-number--success">{{ stats.available_dogs }}</div>
+        <div class="stat-label">{% trans "Disponibili per l'adozione" %}</div>
+      </div>
+      <div class="reveal">
+        <div class="stat-number stat-number--warning">{{ stats.adopted_dogs }}</div>
+        <div class="stat-label">{% trans "Adottati felicemente" %}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__header reveal">
+      <h2 class="section__title">{% trans "Chi Siamo" %}</h2>
+      <p class="section__subtitle">
+        {% trans "Il nostro canile si prende cura di cani abbandonati e maltrattati, offrendo loro cure veterinarie, amore e la possibilità di trovare una nuova famiglia." %}
+      </p>
+    </div>
+
+    <div class="feature-grid reveal-group">
+
+      <div class="feature-card reveal">
+        <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        <h3 class="feature-card__title">{% trans "Cura e Amore" %}</h3>
+        <p class="feature-card__text">
+          {% trans "Ogni cane riceve cure veterinarie, alimentazione adeguata e tanto affetto dal nostro staff." %}
+        </p>
+      </div>
+
+      <div class="feature-card reveal">
+        <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 8v8M8 12h8"/>
+        </svg>
+        <h3 class="feature-card__title">{% trans "Assistenza Veterinaria" %}</h3>
+        <p class="feature-card__text">
+          {% trans "Collaboriamo con veterinari qualificati per garantire la salute e il benessere di ogni animale." %}
+        </p>
+      </div>
+
+      <div class="feature-card reveal">
+        <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <h3 class="feature-card__title">{% trans "Adozione Responsabile" %}</h3>
+        <p class="feature-card__text">
+          {% trans "Ti accompagniamo in tutto il processo di adozione per trovare il cane perfetto per te." %}
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Featured dogs -->
+{% if featured_dogs %}
+<section class="section">
+  <div class="container">
+    <div class="section__header reveal">
+      <h2 class="section__title">{% trans "Cani in Evidenza" %}</h2>
+      <p class="section__subtitle">
+        {% trans "Scopri alcuni dei nostri amici a quattro zampe in cerca di una famiglia" %}
+      </p>
+    </div>
+
+    <div class="dogs-grid reveal-group">
+      {% for dog in featured_dogs %}
+      <a href="{% url 'dogs:detail' dog.slug %}" class="dog-card-link reveal">
+        <div class="dog-card">
+          <div class="dog-card__image-wrap">
+            {% if dog.main_image %}
+            <img src="{{ dog.main_image.url }}" alt="{{ dog.name }}" class="dog-card__image">
+            {% else %}
+            <div class="dog-card__placeholder">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <circle cx="4.5" cy="7.5" r="2.5"/>
+                <circle cx="9"   cy="4.5" r="2"/>
+                <circle cx="15"  cy="4.5" r="2"/>
+                <circle cx="19.5" cy="7.5" r="2.5"/>
+                <path d="M12 9c-3.5 0-7 2.8-7 7a2 2 0 002 2h10a2 2 0 002-2c0-4.2-3.5-7-7-7z"/>
+              </svg>
+            </div>
+            {% endif %}
+            <span class="chip chip-green chip--pulse dog-card__badge">&#9679; {% trans "Disponibile" %}</span>
+          </div>
+          <div class="dog-card__body">
+            <h3 class="dog-card__name">{{ dog.name }}</h3>
+            <p class="dog-card__breed">{% if dog.breed %}{{ dog.breed.name }}{% else %}{% trans "Meticcio" %}{% endif %}</p>
+            <p class="dog-card__info">{{ dog.get_size_display }} &bull; {{ dog.age_display }}</p>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="mt-xl">
+      <a href="{% url 'dogs:list' %}" class="btn-primary btn-lg">{% trans "Vedi Tutti i Cani" %} &rarr;</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Featured FAQ -->
+{% if featured_faqs %}
+<section class="section section--alt">
+  <div class="container container--default">
+    <div class="section__header reveal">
+      <h2 class="section__title">{% trans "Domande Frequenti" %}</h2>
+      <p class="section__subtitle">{% trans "Le risposte alle domande più comuni sull'adozione" %}</p>
+    </div>
+
+    <div class="faq-list mb-xl reveal-group">
+      {% for faq in featured_faqs %}
+      <div class="faq-item reveal">
+        <div class="faq-question">
+          <h3>{{ faq.question }}</h3>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer__inner">
+            {{ faq.answer|truncatewords:30 }}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div>
+      <a href="{% url 'faq:list' %}" class="btn-primary">{% trans "Vedi Tutte le FAQ" %} &rarr;</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Final CTA -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-banner__cta" style="flex-direction: column; align-items: center;">
+      <h2 class="cta-banner__title">{% trans "Pronto ad Adottare?" %}</h2>
+      <p class="cta-banner__subtitle">
+        {% trans "Contattaci per prenotare una visita al canile e incontrare i nostri cani. Ti aiuteremo a trovare il compagno perfetto per te e la tua famiglia." %}
+      </p>
+      <div style="display:flex; gap: var(--space-4); flex-wrap: wrap; justify-content: center;">
+        <a href="{% url 'contacts:contact' %}" class="btn-primary btn-lg">{% trans "Contattaci Ora" %}</a>
+        <a href="{% url 'dogs:list' %}"        class="btn-ghost btn-lg">{% trans "Vedi i Cani" %}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

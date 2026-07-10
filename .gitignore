@@ -1,0 +1,184 @@
+# ==========================================
+# Python
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.manifest
+*.spec
+
+# ==========================================
+# Virtual Environment
+# ==========================================
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# ==========================================
+# Django
+# ==========================================
+# Database
+*.sqlite3
+*.db
+db.sqlite3
+db.sqlite3-journal
+
+# Static files (generated)
+/staticfiles/
+/static_root/
+
+# Media files (user uploads - NON commitare su GitHub!)
+/media/
+
+# Logs
+/logs/
+*.log
+
+# Local settings
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Migrations
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# ==========================================
+# SSL Certificates
+# ==========================================
+/ssl/
+*.pem
+*.key
+*.crt
+*.csr
+
+# ==========================================
+# IDE / Editor
+# ==========================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# ==========================================
+# OS
+# ==========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+.Trash-*
+
+# ==========================================
+# Testing
+# ==========================================
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.hypothesis/
+coverage.xml
+*.cover
+.cache
+nosetests.xml
+
+# ==========================================
+# Documentation
+# ==========================================
+docs/_build/
+site/
+
+# ==========================================
+# Project Specific
+# ==========================================
+
+# Settings old/backup
+config/settings/settings.py.old
+*.old
+*.backup
+*.bak
+
+# Scripts temporanei
+/script/temp_*
+/script/*.pyc
+
+# Gunicorn
+gunicorn.pid
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# ==========================================
+# Keep These Files (exceptions)
+# ==========================================
+# Environment examples
+!.env.example
+!.env.local.example
+
+# Static files base
+!/static/favicon.ico
+!/static/css/
+!/static/js/
+!/static/images/
+
+# Placeholder images
+!/media/.gitkeep
+
+# Claude Code & secrets
+*.secret
+.claude/
+CLAUDE.md
+
+# Docker local override (non committare)
+docker-compose.override.yml

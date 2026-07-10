@@ -1,0 +1,52 @@
+{% load cache i18n static %}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{% block meta_description %}{% blocktrans %}{{ SHELTER_NAME }} - Trova il tuo nuovo amico a quattro zampe{% endblocktrans %}{% endblock %}">
+  <title>{% block title %}{% blocktrans %}{{ SHELTER_NAME }} - Trova il tuo amico{% endblocktrans %}{% endblock %}</title>
+
+  <link rel="icon"      type="image/x-icon" href="{% static 'favicon.ico' %}">
+  <link rel="shortcut icon"                 href="{% static 'favicon.ico' %}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'css/variables.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components.css' %}">
+  <link rel="stylesheet" href="{% static 'css/utilities.css' %}">
+
+  {% block extra_css %}{% endblock %}
+
+  {# Set the theme before render to avoid a flash of the wrong color scheme #}
+  <script>(function(){var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})()</script>
+</head>
+<body>
+
+  {% cache 600 navbar %}
+    {% include 'includes/navbar.html' %}
+  {% endcache %}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  {% cache 1800 footer %}
+    {% include 'includes/footer.html' %}
+  {% endcache %}
+
+  <button class="scroll-top" id="scrollTop" aria-label="{% trans 'Torna in cima' %}">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <script src="{% static 'js/main.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+
+</body>
+</html>

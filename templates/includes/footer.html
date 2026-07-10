@@ -1,0 +1,68 @@
+{% load i18n static %}
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer__grid">
+
+      <!-- Brand -->
+      <div>
+        <div class="footer__brand">
+          <svg class="footer__brand-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <circle cx="4.5" cy="7.5" r="2.5"/>
+            <circle cx="9"   cy="4.5" r="2"/>
+            <circle cx="15"  cy="4.5" r="2"/>
+            <circle cx="19.5" cy="7.5" r="2.5"/>
+            <path d="M12 9c-3.5 0-7 2.8-7 7a2 2 0 002 2h10a2 2 0 002-2c0-4.2-3.5-7-7-7z"/>
+          </svg>
+          <span class="footer__brand-name">{{ SHELTER_NAME }}</span>
+        </div>
+        <p class="footer__tagline">{{ SHELTER_TAGLINE }}</p>
+      </div>
+
+      <!-- Useful links -->
+      <div>
+        <h4 class="footer__heading">{% trans "Link Utili" %}</h4>
+        <ul class="footer__links">
+          <li><a href="{% url 'homepage:home' %}"    class="footer__link">{% trans "Home" %}</a></li>
+          <li><a href="{% url 'dogs:list' %}"        class="footer__link">{% trans "I Nostri Cani" %}</a></li>
+          <li><a href="{% url 'faq:list' %}"         class="footer__link">{% trans "FAQ" %}</a></li>
+          <li><a href="{% url 'contacts:contact' %}" class="footer__link">{% trans "Contatti" %}</a></li>
+        </ul>
+      </div>
+
+      <!-- Contacts -->
+      <div>
+        <h4 class="footer__heading">{% trans "Contatti" %}</h4>
+        <ul class="footer__info">
+          <li>{{ ADDRESS_STREET_AND_NUMBER }}</li>
+          <li class="footer__address-detail">{{ ADDRESS_CITY_AND_POSTAL_CODE }}</li>
+          <li>{{ CONTACT_PHONE }}</li>
+          <li>{{ PUBLIC_EMAIL }}</li>
+        </ul>
+      </div>
+
+      <!-- Opening hours -->
+      <div>
+        <h4 class="footer__heading">{% trans "Orari di Apertura" %}</h4>
+        <ul class="footer__info">
+          <li>{{ VISITING_HOURS_WEEKDAYS }}</li>
+          <li>{{ VISITING_HOURS_WEEKEND_SAT }}</li>
+          <li>{{ VISITING_HOURS_WEEKEND_SUN }}</li>
+          <li style="margin-top: 8px; font-size: var(--text-xs); opacity: 0.75;">
+            {% trans "Visite su appuntamento" %}
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer__divider"></div>
+
+    <div class="footer__bottom">
+      <p class="footer__copyright">
+        &copy; {% now "Y" %} {{ SHELTER_NAME }}
+      </p>
+    </div>
+
+  </div>
+</footer>

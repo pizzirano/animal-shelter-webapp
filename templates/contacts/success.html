@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% blocktrans %}Messaggio Inviato - {{ SHELTER_NAME }}{% endblocktrans %}{% endblock %}
+
+{% block content %}
+<div class="feedback-page">
+  <svg class="feedback-page__icon feedback-page__icon--success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/>
+    <polyline points="9 12 11 14.5 15 9.5"/>
+  </svg>
+  <h1 class="feedback-page__title">{% trans "Messaggio Inviato!" %}</h1>
+  <p class="feedback-page__text">
+    {% trans "Grazie per averci contattato. Ti risponderemo al più presto all'indirizzo email che ci hai fornito." %}
+  </p>
+  <div class="feedback-page__cta">
+    <a href="{% url 'homepage:home' %}" class="btn-primary">{% trans "Torna alla Home" %}</a>
+    <a href="{% url 'dogs:list' %}"     class="btn-ghost">{% trans "Vedi i Cani" %}</a>
+  </div>
+</div>
+{% endblock %}

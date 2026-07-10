@@ -1,0 +1,114 @@
+/* ===================================
+   VARIABLES.CSS — Design System Tokens
+   =================================== */
+
+:root, [data-theme="light"] {
+  /* Surfaces — cool green-tinted whites */
+  --color-bg:               #f4f5f3;
+  --color-surface:          #f8f9f7;
+  --color-surface-2:        #fafbf9;
+  --color-surface-offset:   #eef0ec;
+  --color-surface-offset-2: #e7ebe5;
+  --color-surface-dynamic:  #dde3db;
+  --color-divider:          #d2d8cf;
+  --color-border:           #c8cfc5;
+
+  /* Text */
+  --color-text:           #1a2018;
+  --color-text-muted:     #56635a;
+  --color-text-faint:     #a0aaa0;
+  --color-text-inverse:   #f4f5f3;
+
+  /* Primary — Forest Green */
+  --color-primary:           #1f6b3e;
+  --color-primary-hover:     #175430;
+  --color-primary-active:    #0f3d22;
+  --color-primary-highlight: #cde0d5;
+
+  /* Secondary — Slate Blue-Green */
+  --color-secondary:           #2d5f6e;
+  --color-secondary-hover:     #1e4a57;
+  --color-secondary-active:    #133542;
+  --color-secondary-highlight: #c8dde4;
+
+  /* Semantic */
+  --color-success:           #1f6b3e;
+  --color-success-highlight: #cde0d5;
+  --color-warning:           #7a5c1e;
+  --color-warning-highlight: #e8dfc8;
+  --color-error:             #8b2635;
+  --color-error-highlight:   #e4cdd1;
+
+  /* Typography */
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'DM Sans', 'Helvetica Neue', sans-serif;
+  --font-mono:    'Courier New', monospace;
+
+  /* Type Scale — fluid clamp() */
+  --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+  --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+  --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+  --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+  --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+  --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+  --text-3xl:  clamp(2.5rem,   1rem    + 4vw,    5rem);
+
+  /* Spacing */
+  --space-1: 0.25rem;  --space-2: 0.5rem;   --space-3: 0.75rem;
+  --space-4: 1rem;     --space-5: 1.25rem;  --space-6: 1.5rem;
+  --space-8: 2rem;     --space-10: 2.5rem;  --space-12: 3rem;
+  --space-16: 4rem;    --space-20: 5rem;    --space-24: 6rem;
+
+  /* Radii */
+  --radius-sm:   0.25rem;
+  --radius-md:   0.5rem;
+  --radius-lg:   0.75rem;
+  --radius-xl:   1rem;
+  --radius-full: 9999px;
+
+  /* Shadows — cool-tinted, never pure black */
+  --shadow-sm: 0 1px 2px oklch(0.15 0.02 150 / 0.06);
+  --shadow-md: 0 4px 16px oklch(0.15 0.02 150 / 0.09);
+  --shadow-lg: 0 12px 36px oklch(0.15 0.02 150 / 0.13);
+
+  /* Transitions */
+  --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --content-narrow:  640px;
+  --content-default: 960px;
+  --content-wide:    1200px;
+  --content-padding: 1.25rem;
+}
+
+[data-theme="dark"] {
+  --color-bg:               #111714;
+  --color-surface:          #161c18;
+  --color-surface-2:        #1a221c;
+  --color-surface-offset:   #1d2420;
+  --color-surface-offset-2: #222b24;
+  --color-surface-dynamic:  #2d3830;
+  --color-divider:          #273029;
+  --color-border:           #354038;
+  --color-text:             #d2dbd0;
+  --color-text-muted:       #7a9080;
+  --color-text-faint:       #4a5e50;
+  --color-text-inverse:     #111714;
+  --color-primary:           #4da870;
+  --color-primary-hover:     #2d8e52;
+  --color-primary-active:    #1a6b38;
+  --color-primary-highlight: #1e3d2a;
+  --color-secondary:           #4d8fa0;
+  --color-secondary-hover:     #2d7285;
+  --color-secondary-active:    #1a576a;
+  --color-secondary-highlight: #1a3540;
+  --color-success:           #4da870;
+  --color-success-highlight: #1e3d2a;
+  --color-warning:           #c49a3a;
+  --color-warning-highlight: #3d3018;
+  --color-error:             #d06070;
+  --color-error-highlight:   #3d1e24;
+  --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.25);
+  --shadow-md: 0 4px 16px oklch(0 0 0 / 0.35);
+  --shadow-lg: 0 12px 40px oklch(0 0 0 / 0.5);
+}

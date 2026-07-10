@@ -1,0 +1,39 @@
+{% load i18n %}
+<header class="navbar">
+  <nav class="navbar__inner container">
+
+    <!-- Logo -->
+    <a href="{% url 'homepage:home' %}" class="navbar__logo">
+      <svg class="navbar__logo-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <circle cx="4.5" cy="7.5" r="2.5"/>
+        <circle cx="9"   cy="4.5" r="2"/>
+        <circle cx="15"  cy="4.5" r="2"/>
+        <circle cx="19.5" cy="7.5" r="2.5"/>
+        <path d="M12 9c-3.5 0-7 2.8-7 7a2 2 0 002 2h10a2 2 0 002-2c0-4.2-3.5-7-7-7z"/>
+      </svg>
+      <span class="navbar__logo-text">{{ SHELTER_NAME }}</span>
+    </a>
+
+    <div class="navbar__right">
+
+      <!-- Desktop menu -->
+      <ul class="navbar__menu" id="navMenu">
+        <li><a href="{% url 'homepage:home' %}"    class="navbar__link">{% trans "Home" %}</a></li>
+        <li><a href="{% url 'dogs:list' %}"        class="navbar__link">{% trans "I Nostri Cani" %}</a></li>
+        <li><a href="{% url 'faq:list' %}"         class="navbar__link">{% trans "FAQ" %}</a></li>
+        <li><a href="{% url 'contacts:contact' %}" class="navbar__link navbar__link--cta">{% trans "Contatti" %}</a></li>
+      </ul>
+
+      <!-- Dark mode toggle -->
+      <button class="navbar__theme-toggle" data-theme-toggle aria-label="{% trans 'Cambia tema' %}"></button>
+
+      <!-- Hamburger (mobile only) -->
+      <button class="navbar__hamburger" id="navToggle" aria-label="{% trans 'Apri menu' %}" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+</header>

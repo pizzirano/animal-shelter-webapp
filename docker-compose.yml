@@ -1,0 +1,116 @@
+services:
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB:       ${DB_NAME}
+      POSTGRES_USER:     ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks: [shelter_net]
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks: [shelter_net]
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  web:
+    build:
+      context: .
+      target: production
+    restart: unless-stopped
+    environment:
+      DJANGO_ENVIRONMENT: production
+    env_file:
+      - .env
+    volumes:
+      - staticfiles:/app/staticfiles
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks: [shelter_net]
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  nginx:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - staticfiles:/app/staticfiles:ro
+      - certbot_webroot:/var/www/certbot:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      web:
+        condition: service_started
+    networks: [shelter_net]
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - certbot_webroot:/var/www/certbot
+    profiles: [certbot]
+
+  test:
+    build:
+      context: .
+      target: test
+    entrypoint: ["python", "-m", "pytest"]
+    command: ["--tb=short", "-q"]
+    env_file:
+      - .env
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.test_pg
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks: [shelter_net]
+    profiles:
+      - test
+
+volumes:
+  postgres_data:
+  staticfiles:
+  certbot_webroot:
+
+networks:
+  shelter_net:
+    driver: bridge

@@ -1,0 +1,22 @@
+Django==5.0.1
+djangorestframework==3.14.0
+django-filter==23.5
+django-cors-headers==4.3.1
+drf-spectacular==0.27.0
+Pillow==10.2.0
+python-decouple==3.8
+easy-thumbnails==2.8.5
+whitenoise==6.6.0
+
+# Security & Rate Limiting
+django-ratelimit==4.1.0
+django-recaptcha==4.0.0
+
+# Forms & Widgets
+django-widget-tweaks==1.5.0 
+
+# Monitoring
+django-axes==6.1.1
+
+# Media storage - Cloudinary
+django-cloudinary-storage==0.3.0
