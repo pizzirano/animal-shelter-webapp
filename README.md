@@ -61,13 +61,14 @@ $EDITOR config/shelter_config.py   # then fill in your shelter's data
 | Component | Version | Usage |
 |-----------|---------|-------|
 | Python | 3.12 | Runtime |
-| Django | 5.0.1 | Web framework |
+| Django | 5.0.14 | Web framework |
 | Django REST Framework | 3.14.0 | REST API |
 | PostgreSQL | 16-alpine | Database (prod) |
 | SQLite | — | Database (dev/test) |
 | Redis | 7-alpine | Cache and rate limiting (prod) |
-| Gunicorn | 21.2.0 | WSGI server |
+| Gunicorn | 22.0.0 | WSGI server |
 | WhiteNoise | 6.6.0 | Static files |
+| Pillow | 10.4.0 | Image processing / upload validation |
 | Cloudinary | 1.44.1 | Media storage (prod) |
 | django-ratelimit | 4.1.0 | Rate limiting |
 | django-recaptcha | 4.0.0 | reCAPTCHA v2 |
@@ -99,7 +100,7 @@ animal-shelter-webapp/
 ├── templates/         — Django templates for each app
 ├── requirements/      — base.txt / development.txt / production.txt / test.txt
 ├── Dockerfile         — multi-stage: base / test / production
-├── docker-compose.yml — web + db + redis + test runner
+├── docker-compose.yml — web + db + redis + nginx + certbot + test runner
 └── entrypoint.sh      — migrate → collectstatic → gunicorn
 ```
 
