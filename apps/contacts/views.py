@@ -13,7 +13,6 @@ from django.utils.translation import gettext as _ # pyright: ignore[reportMissin
 import logging # pyright: ignore[reportMissingModuleSource]
 
 from .forms import ContactForm
-from .models import ContactMessage
 
 logger = logging.getLogger(__name__)
 
@@ -121,10 +120,6 @@ class ContactView(FormView):
     def form_invalid(self, form):
         """Handle an invalid form submission."""
 
-        logger.error(f"🔴 FORM INVALID - Full errors: {form.errors}")
-        logger.error(f"🔴 Full POST data: {dict(self.request.POST)}")
-        logger.error(f"🔴 g-recaptcha-response present: {bool(self.request.POST.get('g-recaptcha-response'))}")
-
         # Log errors (could indicate spam)
         if 'website' in form.errors or 'message' in form.errors:
             logger.warning(
@@ -212,10 +207,3 @@ Questo messaggio è stato generato automaticamente dal sito {settings.SHELTER_NA
 class ContactSuccessView(TemplateView):
     """Confirmation page shown after a message is sent."""
     template_name = 'contacts/success.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # Show the most recently sent message
-        last_message = ContactMessage.objects.order_by('-created_at').first()
-        context['last_message'] = last_message
-        return context

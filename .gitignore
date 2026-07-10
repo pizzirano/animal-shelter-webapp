@@ -49,8 +49,9 @@ db.sqlite3-journal
 # Media files (user uploads - NON commitare su GitHub!)
 /media/
 
-# Logs
-/logs/
+# Logs (keep the directory, ignore its contents — the app writes log files here)
+/logs/*
+!/logs/.gitkeep
 *.log
 
 # Local settings
@@ -59,9 +60,8 @@ db.sqlite3-journal
 .env.production
 .env.*.local
 
-# Migrations
-*/migrations/*.py
-!*/migrations/__init__.py
+# Migrations are committed on purpose (a fork needs the schema history);
+# do NOT ignore them.
 
 # ==========================================
 # SSL Certificates

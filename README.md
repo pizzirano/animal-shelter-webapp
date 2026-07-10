@@ -128,6 +128,12 @@ python manage.py runserver
 
 Access: http://localhost:8000 — Admin: http://localhost:8000/admin/
 
+> The development settings ship with sensible defaults, so the app boots
+> without a `.env` for a first local look (SQLite, DEBUG on). Fill in `.env`
+> before sending email, enabling reCAPTCHA, or going anywhere near production.
+> The `dev`/`test` settings are selected by `DJANGO_ENVIRONMENT` (default
+> `development`); tests run with a plain `pytest` (see [Tests](#tests)).
+
 ---
 
 ## Running with Docker

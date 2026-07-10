@@ -4,6 +4,10 @@ Production settings - With Security & Performance optimized for live environment
 from .base import *
 from decouple import config as env_config
 
+# Require a real SECRET_KEY in production: fail fast instead of falling back to
+# the insecure development default defined in base.py.
+SECRET_KEY = env_config('SECRET_KEY')
+
 # === SECURITY WARNING: must be set to False in production! ===
 DEBUG = env_config('DEBUG', default=False, cast=bool)
 IS_LOCAL = env_config('IS_LOCAL', default=False, cast=bool)

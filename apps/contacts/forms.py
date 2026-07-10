@@ -139,17 +139,3 @@ class ContactForm(forms.ModelForm):
             raise forms.ValidationError('Dominio email non consentito')
         
         return email
-    
-    def clean_captcha(self):
-        """Debug CAPTCHA validation"""
-        import logging
-        logger = logging.getLogger(__name__)
-        
-        captcha = self.cleaned_data.get('captcha')
-
-        if not captcha:
-            logger.error("❌ CAPTCHA non validato!")
-        else:
-            logger.info("✅ CAPTCHA validato correttamente")
-        
-        return captcha

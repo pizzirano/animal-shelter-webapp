@@ -38,7 +38,9 @@ EMAIL_BACKEND = env_config('EMAIL_BACKEND', default='django.core.mail.backends.s
 EMAIL_HOST = env_config('EMAIL_HOST', default='smtp-relay.brevo.com') # Using Brevo as default for development (can be changed)
 EMAIL_PORT = env_config('EMAIL_PORT', default=587, cast=int)
 EMAIL_USE_TLS = env_config('EMAIL_USE_TLS', default=True, cast=bool)
-EMAIL_HOST_USER = env_config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env_config('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = env_config('DEFAULT_FROM_EMAIL')
-STAFF_EMAIL = env_config('STAFF_EMAIL')
+# Defaults let the project boot (runserver/pytest) on a fresh clone with no .env;
+# set real values in .env to actually send mail from development.
+EMAIL_HOST_USER = env_config('EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD = env_config('EMAIL_HOST_PASSWORD', default='')
+DEFAULT_FROM_EMAIL = env_config('DEFAULT_FROM_EMAIL', default='noreply@example.org')
+STAFF_EMAIL = env_config('STAFF_EMAIL', default='staff@example.org')

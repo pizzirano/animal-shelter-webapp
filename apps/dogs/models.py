@@ -244,8 +244,8 @@ class Dog(TimeStampedModel, PublishableModel):
         return self.status == 'available' and self.is_published
 
     def get_absolute_url(self):
-        """URL of the dog's detail page."""
-        return reverse('dog-detail', kwargs={'slug': self.slug})
+        """URL of the dog's public detail page (not the API endpoint)."""
+        return reverse('dogs:detail', kwargs={'slug': self.slug})
 
 
 class DogImage(TimeStampedModel):
