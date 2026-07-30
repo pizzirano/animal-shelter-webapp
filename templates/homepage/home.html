@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n static %}
 
-{% block title %}{% blocktrans %}{{ SHELTER_NAME }} - Adotta un Amico{% endblocktrans %}{% endblock %}
+{% block title %}{% blocktrans %}{{ SHELTER_NAME }} - Resgate de animais{% endblocktrans %}{% endblock %}
 
 {% block content %}
 
@@ -20,19 +20,19 @@
 
   <div class="container">
     <div class="hero__content">
-      <h1 class="hero__title">{% blocktrans %}Benvenuto al<br><em>nostro Canile</em>{% endblocktrans %}</h1>
+      <h1 class="hero__title">{% blocktrans %}Conheça quem<br><em>precisa de ajuda</em>{% endblocktrans %}</h1>
       <p class="hero__subtitle">
-        {% trans "Ogni cane merita una famiglia. Trova il tuo nuovo migliore amico." %}
+        {% trans "Acompanhe de perto a história de cada animal resgatado em Rio Claro e veja como apoiar o tratamento deles." %}
       </p>
       <div class="hero__cta">
-        <a href="{% url 'dogs:list' %}"        class="btn-primary btn-lg">{% trans "Vedi i Cani" %}</a>
-        <a href="{% url 'contacts:contact' %}" class="btn-ghost-inverse btn-lg">{% trans "Contattaci" %}</a>
+        <a href="{% url 'dogs:list' %}"        class="btn-primary btn-lg">{% trans "Ver Animais" %}</a>
+        <a href="{% url 'contacts:contact' %}" class="btn-ghost-inverse btn-lg">{% trans "Fale Conosco" %}</a>
       </div>
     </div>
   </div>
 
   <!-- Slide indicators -->
-  <div class="hero__dots" role="tablist" aria-label="{% trans 'Navigazione slide' %}">
+  <div class="hero__dots" role="tablist" aria-label="{% trans 'Navegação do carrossel' %}">
     <button class="hero__dot is-active" role="tab" aria-label="{% trans 'Slide 1' %}" aria-selected="true"></button>
     <button class="hero__dot"           role="tab" aria-label="{% trans 'Slide 2' %}" aria-selected="false"></button>
     <button class="hero__dot"           role="tab" aria-label="{% trans 'Slide 3' %}" aria-selected="false"></button>
@@ -46,15 +46,13 @@
     <div class="stats-grid reveal-group">
       <div class="reveal">
         <div class="stat-number stat-number--primary">{{ stats.total_dogs }}</div>
-        <div class="stat-label">{% trans "Cani nella nostra struttura" %}</div>
+        <div class="stat-label">{% trans "Animais acolhidos" %}</div>
       </div>
-      <div class="reveal">
-        <div class="stat-number stat-number--success">{{ stats.available_dogs }}</div>
-        <div class="stat-label">{% trans "Disponibili per l'adozione" %}</div>
-      </div>
+      {# A estatística "Disponíveis para adoção" foi removida (não há fluxo de adoção). #}
+      {# TODO Fase 3: stats.adopted_dogs ainda conta status='adopted' — trocar pela contagem de resgatados. #}
       <div class="reveal">
         <div class="stat-number stat-number--warning">{{ stats.adopted_dogs }}</div>
-        <div class="stat-label">{% trans "Adottati felicemente" %}</div>
+        <div class="stat-label">{% trans "Resgatados" %}</div>
       </div>
     </div>
   </div>
@@ -64,9 +62,9 @@
 <section class="section section--alt">
   <div class="container">
     <div class="section__header reveal">
-      <h2 class="section__title">{% trans "Chi Siamo" %}</h2>
+      <h2 class="section__title">{% trans "Quem Somos" %}</h2>
       <p class="section__subtitle">
-        {% trans "Il nostro canile si prende cura di cani abbandonati e maltrattati, offrendo loro cure veterinarie, amore e la possibilità di trovare una nuova famiglia." %}
+        {% trans "A Arca de Noé resgata animais em situação de rua em Rio Claro, garantindo tratamento veterinário, alimentação e cuidado diário até que se recuperem." %}
       </p>
     </div>
 
@@ -76,9 +74,9 @@
         <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
         </svg>
-        <h3 class="feature-card__title">{% trans "Cura e Amore" %}</h3>
+        <h3 class="feature-card__title">{% trans "Cuidado e Carinho" %}</h3>
         <p class="feature-card__text">
-          {% trans "Ogni cane riceve cure veterinarie, alimentazione adeguata e tanto affetto dal nostro staff." %}
+          {% trans "Cada animal resgatado recebe atendimento veterinário, alimentação adequada e o acompanhamento diário da nossa equipe." %}
         </p>
       </div>
 
@@ -87,9 +85,9 @@
           <circle cx="12" cy="12" r="10"/>
           <path d="M12 8v8M8 12h8"/>
         </svg>
-        <h3 class="feature-card__title">{% trans "Assistenza Veterinaria" %}</h3>
+        <h3 class="feature-card__title">{% trans "Assistência Veterinária" %}</h3>
         <p class="feature-card__text">
-          {% trans "Collaboriamo con veterinari qualificati per garantire la salute e il benessere di ogni animale." %}
+          {% trans "Trabalhamos junto a veterinários parceiros para garantir a saúde e o bem-estar de cada animal resgatado." %}
         </p>
       </div>
 
@@ -98,9 +96,9 @@
           <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
           <polyline points="9 22 9 12 15 12 15 22"/>
         </svg>
-        <h3 class="feature-card__title">{% trans "Adozione Responsabile" %}</h3>
+        <h3 class="feature-card__title">{% trans "Como Você Pode Ajudar" %}</h3>
         <p class="feature-card__text">
-          {% trans "Ti accompagniamo in tutto il processo di adozione per trovare il cane perfetto per te." %}
+          {% trans "Sua contribuição custeia o tratamento de quem acabou de ser resgatado. Cada doação vira remédio, ração e consulta." %}
         </p>
       </div>
 
@@ -113,9 +111,9 @@
 <section class="section">
   <div class="container">
     <div class="section__header reveal">
-      <h2 class="section__title">{% trans "Cani in Evidenza" %}</h2>
+      <h2 class="section__title">{% trans "Animais em nossos cuidados" %}</h2>
       <p class="section__subtitle">
-        {% trans "Scopri alcuni dei nostri amici a quattro zampe in cerca di una famiglia" %}
+        {% trans "Conheça alguns dos animais que resgatamos e estão sob nossos cuidados agora" %}
       </p>
     </div>
 
@@ -137,11 +135,12 @@
               </svg>
             </div>
             {% endif %}
-            <span class="chip chip-green chip--pulse dog-card__badge">&#9679; {% trans "Disponibile" %}</span>
+            {# TODO Fase 3: rótulo fixo — passa a vir de STATUS_CHOICES (Resgatado / Em tratamento / Precisa de ajuda / Estável). #}
+            <span class="chip chip-green chip--pulse dog-card__badge">&#9679; {% trans "Disponível" %}</span>
           </div>
           <div class="dog-card__body">
             <h3 class="dog-card__name">{{ dog.name }}</h3>
-            <p class="dog-card__breed">{% if dog.breed %}{{ dog.breed.name }}{% else %}{% trans "Meticcio" %}{% endif %}</p>
+            <p class="dog-card__breed">{% if dog.breed %}{{ dog.breed.name }}{% else %}{% trans "SRD" %}{% endif %}</p>
             <p class="dog-card__info">{{ dog.get_size_display }} &bull; {{ dog.age_display }}</p>
           </div>
         </div>
@@ -150,7 +149,7 @@
     </div>
 
     <div class="mt-xl">
-      <a href="{% url 'dogs:list' %}" class="btn-primary btn-lg">{% trans "Vedi Tutti i Cani" %} &rarr;</a>
+      <a href="{% url 'dogs:list' %}" class="btn-primary btn-lg">{% trans "Ver Todos os Animais" %} &rarr;</a>
     </div>
   </div>
 </section>
@@ -161,8 +160,8 @@
 <section class="section section--alt">
   <div class="container container--default">
     <div class="section__header reveal">
-      <h2 class="section__title">{% trans "Domande Frequenti" %}</h2>
-      <p class="section__subtitle">{% trans "Le risposte alle domande più comuni sull'adozione" %}</p>
+      <h2 class="section__title">{% trans "Dúvidas Frequentes" %}</h2>
+      <p class="section__subtitle">{% trans "As respostas para as dúvidas mais comuns sobre o nosso trabalho" %}</p>
     </div>
 
     <div class="faq-list mb-xl reveal-group">
@@ -184,7 +183,7 @@
     </div>
 
     <div>
-      <a href="{% url 'faq:list' %}" class="btn-primary">{% trans "Vedi Tutte le FAQ" %} &rarr;</a>
+      <a href="{% url 'faq:list' %}" class="btn-primary">{% trans "Ver Todas as Dúvidas" %} &rarr;</a>
     </div>
   </div>
 </section>
@@ -194,13 +193,14 @@
 <section class="cta-banner">
   <div class="container">
     <div class="cta-banner__cta" style="flex-direction: column; align-items: center;">
-      <h2 class="cta-banner__title">{% trans "Pronto ad Adottare?" %}</h2>
+      <h2 class="cta-banner__title">{% trans "Quer Ajudar?" %}</h2>
       <p class="cta-banner__subtitle">
-        {% trans "Contattaci per prenotare una visita al canile e incontrare i nostri cani. Ti aiuteremo a trovare il compagno perfetto per te e la tua famiglia." %}
+        {% trans "Contribua com o resgate destes animais. Sua ajuda custeia o tratamento veterinário, a alimentação e o cuidado de quem foi resgatado das ruas de Rio Claro." %}
       </p>
+      {# TODO Fase 4: o botão primário passa a apontar para a vaquinha ("Ajudar via Vaquinha", ver mockup tela 1). #}
       <div style="display:flex; gap: var(--space-4); flex-wrap: wrap; justify-content: center;">
-        <a href="{% url 'contacts:contact' %}" class="btn-primary btn-lg">{% trans "Contattaci Ora" %}</a>
-        <a href="{% url 'dogs:list' %}"        class="btn-ghost btn-lg">{% trans "Vedi i Cani" %}</a>
+        <a href="{% url 'contacts:contact' %}" class="btn-primary btn-lg">{% trans "Fale Conosco" %}</a>
+        <a href="{% url 'dogs:list' %}"        class="btn-ghost btn-lg">{% trans "Ver Animais" %}</a>
       </div>
     </div>
   </div>

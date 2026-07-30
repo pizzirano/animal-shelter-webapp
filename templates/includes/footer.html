@@ -21,18 +21,18 @@
 
       <!-- Useful links -->
       <div>
-        <h4 class="footer__heading">{% trans "Link Utili" %}</h4>
+        <h4 class="footer__heading">{% trans "Links Úteis" %}</h4>
         <ul class="footer__links">
-          <li><a href="{% url 'homepage:home' %}"    class="footer__link">{% trans "Home" %}</a></li>
-          <li><a href="{% url 'dogs:list' %}"        class="footer__link">{% trans "I Nostri Cani" %}</a></li>
-          <li><a href="{% url 'faq:list' %}"         class="footer__link">{% trans "FAQ" %}</a></li>
-          <li><a href="{% url 'contacts:contact' %}" class="footer__link">{% trans "Contatti" %}</a></li>
+          <li><a href="{% url 'homepage:home' %}"    class="footer__link">{% trans "Início" %}</a></li>
+          <li><a href="{% url 'dogs:list' %}"        class="footer__link">{% trans "Ver Animais" %}</a></li>
+          <li><a href="{% url 'faq:list' %}"         class="footer__link">{% trans "Dúvidas Frequentes" %}</a></li>
+          <li><a href="{% url 'contacts:contact' %}" class="footer__link">{% trans "Fale Conosco" %}</a></li>
         </ul>
       </div>
 
       <!-- Contacts -->
       <div>
-        <h4 class="footer__heading">{% trans "Contatti" %}</h4>
+        <h4 class="footer__heading">{% trans "Contato" %}</h4>
         <ul class="footer__info">
           <li>{{ ADDRESS_STREET_AND_NUMBER }}</li>
           <li class="footer__address-detail">{{ ADDRESS_CITY_AND_POSTAL_CODE }}</li>
@@ -43,13 +43,13 @@
 
       <!-- Opening hours -->
       <div>
-        <h4 class="footer__heading">{% trans "Orari di Apertura" %}</h4>
+        <h4 class="footer__heading">{% trans "Horário de Funcionamento" %}</h4>
         <ul class="footer__info">
           <li>{{ VISITING_HOURS_WEEKDAYS }}</li>
           <li>{{ VISITING_HOURS_WEEKEND_SAT }}</li>
           <li>{{ VISITING_HOURS_WEEKEND_SUN }}</li>
           <li style="margin-top: 8px; font-size: var(--text-xs); opacity: 0.75;">
-            {% trans "Visite su appuntamento" %}
+            {% trans "Visitas com agendamento" %}
           </li>
         </ul>
       </div>

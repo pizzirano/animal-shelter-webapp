@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
-{% block title %}{% blocktrans %}Limite Raggiunto - {{ SHELTER_NAME }}{% endblocktrans %}{% endblock %}
+{% block title %}{% blocktrans %}Limite Atingido - {{ SHELTER_NAME }}{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <div class="feedback-page">
@@ -9,21 +9,21 @@
     <circle cx="12" cy="12" r="10"/>
     <polyline points="12 6 12 12 16 14.5"/>
   </svg>
-  <h1 class="feedback-page__title feedback-page__title--error">{% trans "Limite Richieste Raggiunto" %}</h1>
+  <h1 class="feedback-page__title feedback-page__title--error">{% trans "Limite de Solicitações Atingido" %}</h1>
   <p class="feedback-page__text">
-    {% blocktrans %}Hai raggiunto il limite massimo di richieste consentite.<br>Questa è una misura di sicurezza per prevenire abusi.{% endblocktrans %}
+    {% blocktrans %}Você atingiu o limite de solicitações permitidas.<br>Esta é uma medida de segurança contra abusos.{% endblocktrans %}
   </p>
 
   <div class="alert alert-warning mb-lg" style="text-align: left;">
-    <strong>{% trans "Cosa puoi fare:" %}</strong><br>
-    &bull; {% trans "Attendi 1 ora e riprova" %}<br>
-    &bull; {% trans "Contattaci telefonicamente:" %} {{ CONTACT_PHONE }}<br>
-    &bull; {% trans "Invia una email:" %} {{ PUBLIC_EMAIL }}
+    <strong>{% trans "O que você pode fazer:" %}</strong><br>
+    &bull; {% trans "Aguarde 1 hora e tente novamente" %}<br>
+    &bull; {% trans "Ligue para nós:" %} {{ CONTACT_PHONE }}<br>
+    &bull; {% trans "Envie um e-mail:" %} {{ PUBLIC_EMAIL }}
   </div>
 
   <div class="feedback-page__cta">
-    <a href="{% url 'homepage:home' %}" class="btn-primary">{% trans "Torna alla Home" %}</a>
-    <a href="{% url 'dogs:list' %}"     class="btn-ghost">{% trans "Vedi i Cani" %}</a>
+    <a href="{% url 'homepage:home' %}" class="btn-primary">{% trans "Voltar ao Início" %}</a>
+    <a href="{% url 'dogs:list' %}"     class="btn-ghost">{% trans "Ver Animais" %}</a>
   </div>
 </div>
 {% endblock %}

@@ -111,11 +111,11 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-# UI strings use Italian as the source text (msgid). Set LANGUAGE_CODE to serve
-# a different language and provide its catalog under locale/<lang>/ (an English
-# example catalog ships in locale/en/).
-LANGUAGE_CODE = 'it-it'
-TIME_ZONE = 'Europe/Rome'
+# UI strings use PT-BR as the source text (msgid) — see the roadmap in CLAUDE.md.
+# Set LANGUAGE_CODE to serve a different language and provide its catalog under
+# locale/<lang>/ (the locale/en/ catalog is upstream's and is now stale).
+LANGUAGE_CODE = 'pt-br'
+TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 LOCALE_PATHS = [BASE_DIR / 'locale']

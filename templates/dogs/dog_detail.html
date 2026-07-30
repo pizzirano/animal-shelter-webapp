@@ -7,10 +7,10 @@
 <div class="container" style="padding-top: var(--space-6); padding-bottom: var(--space-16);">
 
   <!-- Breadcrumb -->
-  <nav class="breadcrumb" aria-label="{% trans 'Percorso di navigazione' %}">
-    <a href="{% url 'homepage:home' %}">{% trans "Home" %}</a>
+  <nav class="breadcrumb" aria-label="{% trans 'Trilha de navegação' %}">
+    <a href="{% url 'homepage:home' %}">{% trans "Início" %}</a>
     <span class="breadcrumb__sep" aria-hidden="true">/</span>
-    <a href="{% url 'dogs:list' %}">{% trans "Cani" %}</a>
+    <a href="{% url 'dogs:list' %}">{% trans "Animais" %}</a>
     <span class="breadcrumb__sep" aria-hidden="true">/</span>
     <span aria-current="page">{{ dog.name }}</span>
   </nav>
@@ -65,24 +65,24 @@
       </div>
       <h1 class="dog-detail__name">{{ dog.name }}</h1>
       <p class="dog-detail__breed">
-        {% if dog.breed %}{{ dog.breed.name }}{% else %}{% trans "Meticcio" %}{% endif %}
-        {% if dog.is_mixed_breed %} &mdash; {% trans "Incrocio" %}{% endif %}
+        {% if dog.breed %}{{ dog.breed.name }}{% else %}{% trans "SRD" %}{% endif %}
+        {% if dog.is_mixed_breed %} &mdash; {% trans "Mestiço" %}{% endif %}
       </p>
 
       <!-- Specs -->
       <div class="dog-specs">
-        <h2 class="dog-specs__title">{% trans "Caratteristiche" %}</h2>
+        <h2 class="dog-specs__title">{% trans "Características" %}</h2>
         <div class="dog-specs__grid">
           <div class="dog-specs__item">
-            <strong>{% trans "Sesso" %}</strong>
+            <strong>{% trans "Sexo" %}</strong>
             {{ dog.get_gender_display }}
           </div>
           <div class="dog-specs__item">
-            <strong>{% trans "Taglia" %}</strong>
+            <strong>{% trans "Porte" %}</strong>
             {{ dog.get_size_display }}
           </div>
           <div class="dog-specs__item">
-            <strong>{% trans "Età" %}</strong>
+            <strong>{% trans "Idade" %}</strong>
             {{ dog.age_display }}
           </div>
           {% if dog.weight %}
@@ -92,7 +92,7 @@
           </div>
           {% endif %}
           <div class="dog-specs__item">
-            <strong>{% trans "Arrivo al canile" %}</strong>
+            <strong>{% trans "Data de resgate" %}</strong>
             {{ dog.arrival_date|date:"d/m/Y" }}
           </div>
           {% if dog.microchip_number %}
@@ -106,7 +106,7 @@
 
       <!-- Compatibility -->
       <div class="dog-compat">
-        <h2 class="dog-compat__title">{% trans "Compatibilità" %}</h2>
+        <h2 class="dog-compat__title">{% trans "Convivência" %}</h2>
         <div class="dog-compat__list">
 
           <div class="dog-compat__item">
@@ -115,7 +115,7 @@
             {% else %}
             <svg class="dog-compat__icon dog-compat__icon--no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             {% endif %}
-            <span>{% trans "Adatto a famiglie con bambini" %}</span>
+            <span>{% trans "Convive bem com crianças" %}</span>
           </div>
 
           <div class="dog-compat__item">
@@ -124,7 +124,7 @@
             {% else %}
             <svg class="dog-compat__icon dog-compat__icon--no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             {% endif %}
-            <span>{% trans "Convivenza con altri cani" %}</span>
+            <span>{% trans "Convive com outros cães" %}</span>
           </div>
 
           <div class="dog-compat__item">
@@ -133,21 +133,22 @@
             {% else %}
             <svg class="dog-compat__icon dog-compat__icon--no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             {% endif %}
-            <span>{% trans "Convivenza con gatti" %}</span>
+            <span>{% trans "Convive com gatos" %}</span>
           </div>
 
         </div>
       </div>
 
-      <!-- Adoption CTA -->
+      <!-- Help CTA -->
+      {# TODO Fase 4: href="#" é PLACEHOLDER — trocar por {{ dog.get_vaquinha_url }} (SiteSettings + override por animal). #}
+      {# O gate {% if dog.status == 'available' %} foi removido de propósito: sem fluxo de adoção, #}
+      {# o botão de ajuda precisa aparecer para todos — inclusive (e principalmente) os em tratamento. #}
       <div class="dog-detail__actions">
-        {% if dog.status == 'available' %}
-        <a href="{% url 'contacts:contact' %}?dog={{ dog.id }}" class="btn-primary btn-lg btn-block">
-          {% blocktrans with name=dog.name %}Voglio adottare {{ name }}{% endblocktrans %}
+        <a href="#" class="btn-primary btn-lg btn-block">
+          {% blocktrans with name=dog.name %}Ajudar {{ name }}{% endblocktrans %}
         </a>
-        {% endif %}
         <a href="{% url 'contacts:contact' %}" class="btn-ghost btn-lg btn-block">
-          {% trans "Richiedi informazioni" %}
+          {% trans "Pedir informações" %}
         </a>
       </div>
 
@@ -156,7 +157,7 @@
 
   <!-- Full description -->
   <div class="dog-description reveal">
-    <h2 class="dog-description__title">{% blocktrans with name=dog.name %}Conosci {{ name }}{% endblocktrans %}</h2>
+    <h2 class="dog-description__title">{% blocktrans with name=dog.name %}Nossa história com o {{ name }}{% endblocktrans %}</h2>
     <div class="dog-description__body">
       {{ dog.description|linebreaks }}
     </div>
@@ -165,7 +166,7 @@
   <!-- Special needs -->
   {% if dog.special_needs %}
   <div class="dog-special-needs reveal">
-    <h2 class="dog-special-needs__title">{% trans "Esigenze Speciali" %}</h2>
+    <h2 class="dog-special-needs__title">{% trans "Necessidades Especiais" %}</h2>
     <div class="dog-special-needs__body">
       {{ dog.special_needs|linebreaks }}
     </div>
@@ -175,7 +176,7 @@
   <!-- Similar dogs -->
   {% if similar_dogs %}
   <div class="reveal">
-    <h2 class="mb-lg">{% trans "Potrebbero interessarti anche" %}</h2>
+    <h2 class="mb-lg">{% trans "Você também pode se interessar" %}</h2>
     <div class="dogs-grid reveal-group">
       {% for similar in similar_dogs %}
       <a href="{% url 'dogs:detail' similar.slug %}" class="dog-card-link reveal">

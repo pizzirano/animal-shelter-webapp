@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n widget_tweaks %}
 
-{% block title %}{% blocktrans %}Contatti - {{ SHELTER_NAME }}{% endblocktrans %}{% endblock %}
+{% block title %}{% blocktrans %}Fale Conosco - {{ SHELTER_NAME }}{% endblocktrans %}{% endblock %}
 
 {% block extra_js %}
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -12,20 +12,20 @@
 
   <!-- Header -->
   <div class="page-header reveal">
-    <h1 class="page-header__title">{% trans "Contattaci" %}</h1>
+    <h1 class="page-header__title">{% trans "Fale Conosco" %}</h1>
     <p class="page-header__subtitle">
-      {% trans "Compila il form per richiedere informazioni o prenotare una visita" %}
+      {% trans "Preencha os campos abaixo. Nossa equipe responde o quanto antes." %}
     </p>
   </div>
 
   <!-- Rate limit info -->
   {% if messages_sent_today > 0 %}
   <div class="alert alert-info mb-lg reveal">
-    {% blocktrans with sent=messages_sent_today %}Hai inviato <strong>{{ sent }}</strong> messaggi oggi.{% endblocktrans %}
+    {% blocktrans with sent=messages_sent_today %}Você enviou <strong>{{ sent }}</strong> mensagens hoje.{% endblocktrans %}
     {% if messages_remaining > 0 %}
-      {% blocktrans with remaining=messages_remaining %}Te ne rimangono ancora <strong>{{ remaining }}</strong>.{% endblocktrans %}
+      {% blocktrans with remaining=messages_remaining %}Ainda restam <strong>{{ remaining }}</strong>.{% endblocktrans %}
     {% else %}
-      {% trans "Hai raggiunto il limite giornaliero." %}
+      {% trans "Você atingiu o limite diário." %}
     {% endif %}
   </div>
   {% endif %}
@@ -34,14 +34,14 @@
   <div class="info-box reveal">
     <div class="info-box__grid">
       <div class="info-box__item">
-        <h3>{% trans "Indirizzo" %}</h3>
+        <h3>{% trans "Endereço" %}</h3>
         <p>
           {{ ADDRESS_STREET_AND_NUMBER }}<br>
           {{ ADDRESS_CITY_AND_POSTAL_CODE }}
         </p>
       </div>
       <div class="info-box__item">
-        <h3>{% trans "Telefono" %}</h3>
+        <h3>{% trans "Telefone" %}</h3>
         <p>
           {{ CONTACT_PHONE }}<br>
           {{ VISITING_HOURS_WEEKDAYS }}<br>
@@ -49,7 +49,7 @@
         </p>
       </div>
       <div class="info-box__item">
-        <h3>{% trans "Email" %}</h3>
+        <h3>{% trans "E-mail" %}</h3>
         <p>
           {{ PUBLIC_EMAIL }}
         </p>
@@ -72,7 +72,7 @@
   <div class="card reveal">
 
     <div class="alert alert-warning mb-lg">
-      <strong>{% trans "Protezione Anti-Spam:" %}</strong> {% trans "Questo form è protetto da Google reCAPTCHA e rate limit. I tuoi dati sono protetti e verranno utilizzati solo per rispondere alla tua richiesta." %}
+      <strong>{% trans "Proteção Anti-Spam:" %}</strong> {% trans "Este formulário é protegido por Google reCAPTCHA e limite de envios. Seus dados são protegidos e serão usados apenas para responder à sua mensagem." %}
     </div>
 
     <form method="post" style="display: flex; flex-direction: column; gap: var(--space-5);">
@@ -127,7 +127,7 @@
       <div class="form-group">
         <label for="id_message" class="form-label">{{ form.message.label }}</label>
         {{ form.message }}
-        <span class="form-hint">{% trans "Minimo 20 caratteri, massimo 2000. Non includere link esterni." %}</span>
+        <span class="form-hint">{% trans "Mínimo 20 caracteres, máximo 2000. Não inclua links externos." %}</span>
         {% if form.message.errors %}
         <div class="form-error">{{ form.message.errors }}</div>
         {% endif %}
@@ -151,12 +151,13 @@
 
       <!-- Submit -->
       <button type="submit" class="btn-primary btn-lg btn-block">
-        {% trans "Invia Messaggio" %}
+        {% trans "Enviar Mensagem" %}
       </button>
 
       <!-- Privacy -->
       <p class="text-muted" style="font-size: var(--text-sm); text-align: center; margin-top: calc(-1 * var(--space-2));">
-        {% blocktrans %}Inviando questo modulo accetti la nostra <a href="#" style="color: var(--color-primary);">Privacy Policy</a>. I tuoi dati saranno utilizzati solo per rispondere alla tua richiesta.{% endblocktrans %}
+        {# TODO: href="#" é PLACEHOLDER — a Política de Privacidade ainda não existe (necessária para LGPD). #}
+        {% blocktrans %}Ao enviar este formulário você aceita nossa <a href="#" style="color: var(--color-primary);">Política de Privacidade</a>. Seus dados serão usados apenas para responder à sua mensagem.{% endblocktrans %}
       </p>
 
     </form>

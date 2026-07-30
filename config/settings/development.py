@@ -6,7 +6,7 @@ from .base import *
 DEBUG = True # Force debug mode in development environment (not getting from .env)
 IS_LOCAL = True # Indicate local development environment (not getting from .env)
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]'] # Allow local development hosts (not getting from .env)
+ALLOWED_HOSTS = ["*"] # Allow local development hosts (not getting from .env)
 
 # Database - SQLite for development environment
 DATABASES = {

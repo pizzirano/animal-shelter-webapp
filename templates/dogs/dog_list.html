@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
-{% block title %}{% blocktrans %}I Nostri Cani - {{ SHELTER_NAME }}{% endblocktrans %}{% endblock %}
+{% block title %}{% blocktrans %}Nossos Animais - {{ SHELTER_NAME }}{% endblocktrans %}{% endblock %}
 
 {% block content %}
 
@@ -9,12 +9,12 @@
 
   <!-- Page header -->
   <div class="page-header reveal">
-    <h1 class="page-header__title">{% trans "I Nostri Cani" %}</h1>
+    <h1 class="page-header__title">{% trans "Nossos Animais" %}</h1>
     <p class="page-header__subtitle">
-      {% trans "Trova il tuo nuovo amico a quattro zampe" %}
+      {% trans "Conheça a história de cada animal resgatado e veja como apoiar o tratamento deles" %}
     </p>
     <p class="text-muted mt-sm" style="font-size: var(--text-sm);">
-      {% blocktrans count counter=total_count %}{{ counter }} cane disponibile{% plural %}{{ counter }} cani disponibili{% endblocktrans %}
+      {% blocktrans count counter=total_count %}{{ counter }} animal disponível{% plural %}{{ counter }} animais disponíveis{% endblocktrans %}
     </p>
   </div>
 
@@ -24,17 +24,17 @@
 
       <!-- Search -->
       <div class="filters__field">
-        <label for="search" class="form-label">{% trans "Cerca:" %}</label>
+        <label for="search" class="form-label">{% trans "Buscar:" %}</label>
         <input type="text" name="search" id="search" value="{{ current_filters.search }}"
-               placeholder="{% trans 'Nome o razza...' %}"
+               placeholder="{% trans 'Nome ou raça...' %}"
                class="form-control">
       </div>
 
       <!-- Gender -->
       <div class="filters__field">
-        <label for="gender" class="form-label">{% trans "Sesso:" %}</label>
+        <label for="gender" class="form-label">{% trans "Sexo:" %}</label>
         <select name="gender" id="gender" class="form-control">
-          <option value="">{% trans "Tutti" %}</option>
+          <option value="">{% trans "Todos" %}</option>
           {% for value, label in gender_choices %}
           <option value="{{ value }}" {% if current_filters.gender == value %}selected{% endif %}>{{ label }}</option>
           {% endfor %}
@@ -43,9 +43,9 @@
 
       <!-- Size -->
       <div class="filters__field">
-        <label for="size" class="form-label">{% trans "Taglia:" %}</label>
+        <label for="size" class="form-label">{% trans "Porte:" %}</label>
         <select name="size" id="size" class="form-control">
-          <option value="">{% trans "Tutte" %}</option>
+          <option value="">{% trans "Todos" %}</option>
           {% for value, label in size_choices %}
           <option value="{{ value }}" {% if current_filters.size == value %}selected{% endif %}>{{ label }}</option>
           {% endfor %}
@@ -54,9 +54,9 @@
 
       <!-- Status -->
       <div class="filters__field">
-        <label for="status" class="form-label">{% trans "Stato:" %}</label>
+        <label for="status" class="form-label">{% trans "Situação:" %}</label>
         <select name="status" id="status" class="form-control">
-          <option value="">{% trans "Tutti" %}</option>
+          <option value="">{% trans "Todas" %}</option>
           {% for value, label in status_choices %}
           <option value="{{ value }}" {% if current_filters.status == value %}selected{% endif %}>{{ label }}</option>
           {% endfor %}
@@ -65,30 +65,30 @@
 
       <!-- Compatibility -->
       <div class="filters__compat">
-        <span class="filters__compat-label">{% trans "Compatibilità:" %}</span>
+        <span class="filters__compat-label">{% trans "Convivência:" %}</span>
         <div class="checkbox-group">
           <label class="checkbox-label">
             <input type="checkbox" name="good_with_children" value="1"
                    {% if current_filters.good_with_children %}checked{% endif %}>
-            {% trans "Bambini" %}
+            {% trans "Crianças" %}
           </label>
           <label class="checkbox-label">
             <input type="checkbox" name="good_with_dogs" value="1"
                    {% if current_filters.good_with_dogs %}checked{% endif %}>
-            {% trans "Altri cani" %}
+            {% trans "Outros cães" %}
           </label>
           <label class="checkbox-label">
             <input type="checkbox" name="good_with_cats" value="1"
                    {% if current_filters.good_with_cats %}checked{% endif %}>
-            {% trans "Gatti" %}
+            {% trans "Gatos" %}
           </label>
         </div>
       </div>
 
       <!-- Actions -->
       <div class="filters__actions">
-        <button type="submit" class="btn-primary btn-sm">{% trans "Filtra" %}</button>
-        <a href="{% url 'dogs:list' %}" class="btn-ghost btn-sm">{% trans "Reset" %}</a>
+        <button type="submit" class="btn-primary btn-sm">{% trans "Filtrar" %}</button>
+        <a href="{% url 'dogs:list' %}" class="btn-ghost btn-sm">{% trans "Limpar" %}</a>
       </div>
 
     </form>
@@ -131,25 +131,25 @@
         <div class="dog-card__body">
           <h3 class="dog-card__name">{{ dog.name }}</h3>
           <p class="dog-card__breed">
-            {% if dog.breed %}{{ dog.breed.name }}{% else %}{% trans "Meticcio" %}{% endif %}
+            {% if dog.breed %}{{ dog.breed.name }}{% else %}{% trans "SRD" %}{% endif %}
           </p>
           <p class="dog-card__info">
             {{ dog.get_gender_display }} &bull; {{ dog.get_size_display }} &bull; {{ dog.age_display }}
           </p>
           <div class="dog-card__compat">
             {% if dog.good_with_children %}
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" title="{% trans 'Adatto a bambini' %}" aria-label="{% trans 'Adatto a bambini' %}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" title="{% trans 'Bom com crianças' %}" aria-label="{% trans 'Bom com crianças' %}">
               <circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/>
             </svg>
             {% endif %}
             {% if dog.good_with_dogs %}
-            <svg viewBox="0 0 24 24" fill="currentColor" title="{% trans 'Adatto ad altri cani' %}" aria-label="{% trans 'Adatto ad altri cani' %}">
+            <svg viewBox="0 0 24 24" fill="currentColor" title="{% trans 'Bom com outros cães' %}" aria-label="{% trans 'Bom com outros cães' %}">
               <circle cx="4.5" cy="7.5" r="2.5"/><circle cx="9" cy="4.5" r="2"/><circle cx="15" cy="4.5" r="2"/><circle cx="19.5" cy="7.5" r="2.5"/>
               <path d="M12 9c-3.5 0-7 2.8-7 7a2 2 0 002 2h10a2 2 0 002-2c0-4.2-3.5-7-7-7z"/>
             </svg>
             {% endif %}
             {% if dog.good_with_cats %}
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" title="{% trans 'Adatto a gatti' %}" aria-label="{% trans 'Adatto a gatti' %}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" title="{% trans 'Bom com gatos' %}" aria-label="{% trans 'Bom com gatos' %}">
               <path d="M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/>
               <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
               <line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
@@ -169,20 +169,20 @@
   <div class="pagination">
     {% if page_obj.has_previous %}
     <a href="?page=1{% for key, value in current_filters.items %}{% if value %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
-       class="pagination__btn">{% trans "Prima" %}</a>
+       class="pagination__btn">{% trans "Primeira" %}</a>
     <a href="?page={{ page_obj.previous_page_number }}{% for key, value in current_filters.items %}{% if value %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
-       class="pagination__btn">&lsaquo; {% trans "Precedente" %}</a>
+       class="pagination__btn">&lsaquo; {% trans "Anterior" %}</a>
     {% endif %}
 
     <span class="pagination__info">
-      {% blocktrans with num=page_obj.number total=page_obj.paginator.num_pages %}Pagina {{ num }} di {{ total }}{% endblocktrans %}
+      {% blocktrans with num=page_obj.number total=page_obj.paginator.num_pages %}Página {{ num }} de {{ total }}{% endblocktrans %}
     </span>
 
     {% if page_obj.has_next %}
     <a href="?page={{ page_obj.next_page_number }}{% for key, value in current_filters.items %}{% if value %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
-       class="pagination__btn">{% trans "Successiva" %} &rsaquo;</a>
+       class="pagination__btn">{% trans "Próxima" %} &rsaquo;</a>
     <a href="?page={{ page_obj.paginator.num_pages }}{% for key, value in current_filters.items %}{% if value %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
-       class="pagination__btn">{% trans "Ultima" %}</a>
+       class="pagination__btn">{% trans "Última" %}</a>
     {% endif %}
   </div>
   {% endif %}
@@ -197,9 +197,9 @@
       <circle cx="19.5" cy="7.5" r="2.5"/>
       <path d="M12 9c-3.5 0-7 2.8-7 7a2 2 0 002 2h10a2 2 0 002-2c0-4.2-3.5-7-7-7z"/>
     </svg>
-    <h2 class="empty-state__title">{% trans "Nessun cane trovato" %}</h2>
-    <p class="empty-state__text">{% trans "Prova a modificare i filtri di ricerca" %}</p>
-    <a href="{% url 'dogs:list' %}" class="btn-primary">{% trans "Mostra tutti i cani" %}</a>
+    <h2 class="empty-state__title">{% trans "Nenhum animal encontrado" %}</h2>
+    <p class="empty-state__text">{% trans "Tente ajustar os filtros de busca" %}</p>
+    <a href="{% url 'dogs:list' %}" class="btn-primary">{% trans "Mostrar todos os animais" %}</a>
   </div>
   {% endif %}
 

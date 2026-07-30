@@ -6,7 +6,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 An open-source Django platform for an animal shelter to showcase adoptable dogs. It is designed as a **reusable template**: a fork rebrands the site by editing only two files — `config/shelter_config.py` (public data: name, contacts, hours) and `.env` (secrets/runtime). No application code should need editing to rebrand. Keep that contract in mind: shelter-specific data belongs in `shelter_config.py`, never hard-coded in apps or templates.
 
-UI source strings are **Italian** (`msgid`), wrapped in Django i18n tags. The site serves one language per deployment via `LANGUAGE_CODE` in `config/settings/base.py` (default `it-it`); an English example catalog ships in `locale/en/`.
+UI source strings are wrapped in Django i18n tags and the site serves one language per deployment via `LANGUAGE_CODE` in `config/settings/base.py`. **This fork's source strings are PT-BR** (`msgid`), set in Phase 1 of the roadmap below — upstream shipped Italian msgids with an English catalog in `locale/en/`, which is now stale and unused. Deliberate choice: this fork serves one ONG in one language, so strings are translated at the source instead of maintained in a `.po` catalog.
+
+## Adaptation roadmap — ONG Arca de Noé (Rio Claro/SP)
+
+This fork is being adapted from the generic Italian shelter template into the site of **ONG Arca de Noé**, Rio Claro/SP. Purpose: showcase rescued street animals and drive financial help via **vaquinha** (Vakinha/PicPay). There is **no adoption flow** — the focus is street rescue + donations. Any adoption-shaped copy, field, or status is legacy from upstream and is being removed phase by phase.
+
+Phases are kept small and locally testable:
+
+1. **Rebranding + PT-BR copy** — no model/DB changes. `shelter_config.py`, templates, `LANGUAGE_CODE`.
+2. **Generalize `Dog` → `Animal`** with a `species` field (cão/gato).
+3. **Remove the adoption flow, redefine statuses** — target labels: `Resgatado` / `Em tratamento` / `Precisa de ajuda` / `Estável`.
+4. **Vaquinha** — `SiteSettings` model holding the ONG-wide default link, plus an optional per-animal override field. Most animals point at the general fund; urgent cases (surgery, etc.) get a dedicated campaign.
+5. **WhatsApp (`wa.me`) links + Open Graph tags** for Facebook/group link previews.
+6. **Testing** — pytest + manual checklist + Render staging.
+7. **Production** — final domain, `DEBUG=False`, Render + Neon + Cloudflare.
+
+Visual reference: `docs/Arca de Noé mobile mockups.pdf` (4 mobile screens: Início, Detalhe do Animal, Fale Conosco, Admin: Cadastrar Animal). The copy in those mockups is the source of truth for page text.
+
+Naming note: through Phase 1 the user-facing word is **"animais"**, while models, URLs and code identifiers are still `dog`/`dogs`. That mismatch is intentional and gets resolved in Phase 2.
 
 ## Commands
 

@@ -175,10 +175,6 @@ celerybeat.pid
 # Placeholder images
 !/media/.gitkeep
 
-# Claude Code & secrets
-*.secret
-.claude/
-CLAUDE.md
 
 # Docker local override (non committare)
 docker-compose.override.yml
